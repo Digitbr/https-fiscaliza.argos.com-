@@ -1,0 +1,11 @@
+/* CSS extra da página de Auditoria */
+
+/* Box sizing global */
+body {
+  box-sizing: border-box;
+}
+
+/* Habilitar view-transitions para navegação */
+@view-transition {
+  navigation: auto;
+}

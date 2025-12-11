@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login - Argos Vigilância</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #00d7ff;
+      color: #0f1724;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 8px 28px rgba(15, 23, 36, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .logo img {
+      max-width: 140px;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 6px 18px rgba(102,126,234,0.12));
+    }
+
+    .logo h1 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0b1220;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .logo p {
+      font-size: 13px;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #4a5568;
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      background: #f7fafc;
+      color: #2d3748;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+      background: white;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+      margin-top: 8px;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    }
+
+    .btn-login:active {
+      transform: translateY(0);
+    }
+
+    .error-message {
+      background: #fee2e2;
+      border: 1.5px solid #fca5a5;
+      color: #991b1b;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      display: none;
+      animation: shake 0.5s;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .lock-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo">
+      <img src="./arq/Logo-Argosvig-2-e1745505100362.webp" alt="Argosvig">
+      <div class="lock-icon">🔒</div>
+      <h1>Área Restrita</h1>
+      <p>Sistema de Fiscalização</p>
+    </div>
+
+    <div id="error-message" class="error-message">
+      Usuário ou senha incorretos!
+    </div>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" name="username" required autocomplete="username">
+      </div>
+
+      <div class="form-group">
+          <label for="password">Senha:</label>
+      <div style="position: relative;">
+      <input type="password" id="password" name="password" required autocomplete="current-password">
+          <button type="button" id="toggle-password" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
+      🕵️
+          </button>
+      </div>
+    </div>
+
+      <button type="submit" class="btn-login">Entrar no Sistema</button>
+    </form>
+
+    <div class="footer">
+      © 2025 Argos Vigilância. Todos os direitos reservados.
+    </div>
+  </div>
+
+  <script>
+    const USUARIOS = {
+      'admin': { senha: 'admin123', tipo: 'admin' },
+      'fiscal': { senha: 'fiscal123', tipo: 'fiscal' }
+    };
+
+    const loginForm = document.getElementById('login-form');
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (USUARIOS[username] && USUARIOS[username].senha === password) {
+        sessionStorage.setItem('argos_logged_in', 'true');
+        sessionStorage.setItem('argos_user', username);
+        sessionStorage.setItem('argos_tipo', USUARIOS[username].tipo);
+        window.location.href = 'index.html';
+      } else {
+        const errorMessage = document.getElementById('error-message');
+        errorMessage.classList.add('show');
+        setTimeout(() => errorMessage.classList.remove('show'), 3000);
+      }
+    });
+
+
+    // Verificar se já está logado
+    if (sessionStorage.getItem('argos_logged_in') === 'true') {
+      window.location.href = 'index.html';
+    }
+    const togglePassword = document.getElementById('toggle-password');
+const passwordInput = document.getElementById('password');
+
+togglePassword.addEventListener('click', () => {
+  // Alternar o tipo do campo de senha
+  const type = passwordInput.type === 'password' ? 'text' : 'password';
+  passwordInput.type = type;
+
+  // Alterar o ícone do botão
+  togglePassword.textContent = type === 'password' ? '🕵️' : '🙈';
+});
+  </script>
+</body>
+</html>
